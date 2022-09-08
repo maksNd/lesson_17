@@ -46,6 +46,10 @@ class BooksView(Resource):
         all_books = db.session.query(Book).all()
         return books_schema.dump(all_books), 200
 
+    """
+    curl -X POST "http://127.0.0.1:5000/books" -H "Content-Type: application/json" -d '{"year": 1905, "author": "wer", "name": "WWW"}'
+    """
+
     def post(self):
         requested_json = request.json
         new_user = Book(**requested_json)
